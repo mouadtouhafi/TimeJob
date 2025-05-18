@@ -2,7 +2,7 @@
 
 TimeJob is a web application built with **Spring Boot**, using **JWT authentication**, allowing users and admins to manage **timesheets**, **leave requests**, and **internal messages** efficiently and securely.
 
-![TimeJob Banner](images/logo.png)
+![TimeJob Banner](readmeImages/logo.png)
 
 ---
 
