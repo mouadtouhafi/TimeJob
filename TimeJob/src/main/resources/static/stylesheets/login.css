@@ -1,0 +1,123 @@
+:root {
+	--glass-bg: rgba(255, 255, 255, 0.1);
+	--glass-border: rgba(255, 255, 255, 0.3);
+	--glow: rgba(255, 255, 255, 0.2);
+	--text-color: #19181a;
+	--radius: 20px;
+	--font-family: 'Quicksand', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: var(--font-family);
+	background: url('/images/background-page.png') no-repeat center center / cover;
+	color: var(--text-color);
+}
+
+.page-content {
+	flex: 1;
+	display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem 0;
+}
+
+.center-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+}
+
+.container {
+	width: 316px;
+	background-color: #FFFFFF;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px #efefef;
+	padding: 20px;
+}
+
+.login-logo {
+	display: block;
+	margin: 0 auto 2.5rem;
+	max-width: 120px;
+	height: auto;
+}
+
+
+.container h1 {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.form-group {
+	margin-bottom: 1rem;
+}
+
+.form-group label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 0.4rem;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 0.95rem;
+}
+
+input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	background-color: rgb(112, 71, 235);
+	color: white;
+	font-weight: 600;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+	opacity: 0.9;
+}
+
+.error {
+	color: red;
+	background-color: #f8d7da;
+	padding: 0.75rem;
+	border-radius: 10px;
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.register-link {
+	margin-top: 1rem;
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+.register-link a {
+	color: rgb(112, 71, 235);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.register-link a:hover {
+	text-decoration: underline;
+}

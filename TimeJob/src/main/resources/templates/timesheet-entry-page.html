@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+<link rel="stylesheet" href="/stylesheets/timesheet.css">
+<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Timesheet Entry</title>
+</head>
+
+<body class="timesheet-page">
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="timesheet-title">
+		<h1>Weekly Timesheet Entry</h1>
+	</div>
+	<form class="timesheet-form" th:action="@{/submit-timesheet}" method="POST" th:object="${timesheet}">
+		<div class="form-group">
+			<div class="form-group-label">
+				<label>Date :</label>
+			</div>
+			<label for="from_entry-date">From :</label>
+			<input type="date" id="from-entry-date" name="from_entry-date" th:field="*{startDate}" required>
+			<label for="to_entry-date">To :</label>
+			<input type="date" id="to-entry-date" name="to_entry-date" th:field="*{endDate}" disabled required>
+		</div>
+		<div class="form-group">
+			<div id="daily-hours-container"></div>
+		</div>
+		<div class="form-group">
+			<div class="form-group-label">
+				<label>Project/Task :</label>
+			</div>
+			<select id="project" name="project" th:field="*{task}" required>
+				<option value="">Select Project</option>
+				<option th:each="t : ${tasks}" th:value="${t}" th:text="${t}"></option>
+			</select>
+		</div>
+		<div class="form-group">
+			<div class="form-group-label">
+				<label>Total Hours :</label>
+			</div>
+			<input type="number" id="hours" name="hours" step="0.25" min="0" max="24" placeholder="Auto-calculated"
+				th:field="*{totalHours}" readonly>
+		</div>
+		<div class="form-group">
+			<div class="form-group-label">
+				<label>Notes :</label>
+			</div>
+			<textarea id="notes" name="notes" rows="3" placeholder="Add any additional details..."
+				th:field="*{notes}"></textarea>
+		</div>
+		<button type="submit" class="submit-btn">Submit Entry</button>
+		<div th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></div>
+		<div th:if="${successMessage}" class="alert-success" th:text="${successMessage}"></div>
+	</form>
+	<div class="timesheet-note">
+		<p><small>Note: Timesheets must be submitted each week by Friday 5 PM.</small></p>
+	</div>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/timesheet.js}"></script>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

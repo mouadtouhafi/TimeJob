@@ -1,0 +1,49 @@
+.page-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: 'Quicksand', sans-serif;
+	background: url('/images/background-page.png') center center / cover no-repeat;
+}
+
+.success-container {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 20px;
+	padding: 2rem 3rem;
+	text-align: center;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+	color: #19181a;
+}
+
+.emoji {
+	font-size: 4rem;
+	margin-bottom: 1rem;
+}
+
+.success-container h1 {
+	font-size: 1.8rem;
+	margin-bottom: 1rem;
+}
+
+.success-container p {
+	font-size: 1rem;
+	margin-bottom: 2rem;
+}
+
+.success-container a {
+	text-decoration: none;
+	background-color: rgb(112, 71, 235);
+	color: white;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-weight: 600;
+	display: inline-block;
+}
+
+.success-container a:hover {
+	background-color: rgb(95, 57, 215);
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Your submissions</title>
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<main>
+		<div class="card-container">
+			<a class="card card-link" th:href="@{/admin/timesheets}">
+				<h2>Manage Timesheets</h2>
+				<p>Access and review all submitted timesheets from your team. Approve, reject, or follow up on recorded working hours.</p>
+			</a>
+			<a class="card card-link" th:href="@{/admin/daysoff}">
+				<h2>Manage Days off</h2>
+				<p>Monitor employee leave requests. Approve vacation days, sick leave, or other absences efficiently and clearly.</p>
+			</a>
+			<a class="card card-link" th:href="@{/admin/messages}">
+				<h2>Manage Messages</h2>
+				<p>Read messages submitted by users. Mark them as treated and follow up as necessary to ensure good communication.</p>
+			</a>
+		</div>
+	</main>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

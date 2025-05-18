@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Timesheet Submitted</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/timesheet-submitted.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body class="timesheet-page">
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<h1>Submitted Timesheets</h1>
+		<div th:if="${duplicatedDates != null and !duplicatedDates.isEmpty()}" class="warning-duplicated-dates" onclick="openDuplicatedDatesModal()">
+			<p>⚠️ Some of your submitted timesheets contain duplicated dates — Click to view.</p>
+		</div>
+		<label>
+			Filter by task:
+			<input type="text" id="globalFilter" placeholder="Type to filter tasks…">
+		</label>
+		<table id="timesheetTable">
+			<thead>
+				<tr class="filter-row">
+					<th><input type="text" placeholder="Filter ID"></th>
+					<th><input type="text" placeholder="Filter Start"></th>
+					<th><input type="text" placeholder="Filter End"></th>
+					<th><input type="text" placeholder="Filter Task"></th>
+					<th><input type="text" placeholder="Filter Hours"></th>
+					<th><input type="text" placeholder="Filter Note"></th>
+					<th><input type="text" placeholder="Filter Status"></th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr class="header-row">
+					<th>ID</th>
+					<th>Start date</th>
+					<th>End date</th>
+					<th>Task</th>
+					<th>TotalHours</th>
+					<th>Note</th>
+					<th>Status</th>
+					<th></th>
+					<th></th>
+					<th>Monday</th>
+					<th>Tuesday</th>
+					<th>Wednesday</th>
+					<th>Thursday</th>
+					<th>Friday</th>
+					<th>Saturday</th>
+					<th>Sunday</th>
+				</tr>
+			</thead>
+			<tbody th:each="timesheet : ${timesheets}">
+				<tr>
+					<td th:text="${timesheet.id}"></td>
+					<td th:text="${timesheet.startDate}"></td>
+					<td th:text="${timesheet.endDate}"></td>
+					<td th:text="${timesheet.task}"></td>
+					<td th:text="${timesheet.totalHours}"></td>
+					<td th:text="${timesheet.notes}"></td>
+					<td th:text="${timesheet.approved ? 'Approved' : 'Not Approved'}"></td>
+					<td>
+						<form th:action="@{/delete-timesheet}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${timesheet.id}" />
+							<button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+						</form>
+					</td>
+					<td><a th:href="@{/timesheet/update/{id}(id=${timesheet.id})}">Update</a></td>
+					<td th:text="${timesheet.mondayHours}"></td>
+					<td th:text="${timesheet.tuesdayHours}"></td>
+					<td th:text="${timesheet.wednesdayHours}"></td>
+					<td th:text="${timesheet.thursdayHours}"></td>
+					<td th:text="${timesheet.fridayHours}"></td>
+					<td th:text="${timesheet.saturdayHours}"></td>
+					<td th:text="${timesheet.sundayHours}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="duplicatedDatesModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeDuplicatedDatesModal()">&times;</span>
+			<h2>Duplicated Dates</h2>
+			<ul class="scrollable-list">
+				<li th:each="date : ${duplicatedDates}" th:text="${date}"></li>
+			</ul>
+		</div>
+	</div>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/timesheet-submitted.js}"></script>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --glow: rgba(255, 255, 255, 0.2);
+      --text-color: #19181a;
+      --font-family: 'Quicksand', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-family);
+      background: url('/images/background-page.png') no-repeat center center / cover;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .error-container {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      padding: 3rem 2rem;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .error-code {
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgb(112, 71, 235);
+      margin-bottom: 1rem;
+    }
+
+    .error-message {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: rgb(112, 71, 235);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-link:hover {
+      background-color: rgb(95, 57, 215);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="error-container">
+    <div class="error-code">403</div>
+    <div class="error-message">You do not have the privilege to access this page.</div>
+    <a th:href="@{/home}" class="login-link">Go to Home</a>
+  </div>
+</body>
+
+</html>
+

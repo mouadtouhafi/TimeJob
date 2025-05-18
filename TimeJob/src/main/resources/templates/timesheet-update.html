@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+<link rel="stylesheet" href="/stylesheets/timesheet-update.css">
+<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Timesheet Entry</title>
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<form class="timesheet-form" th:action="@{/update-timesheet}" method="POST" th:object="${timesheet}">
+		<input type="hidden" th:field="*{id}" />
+		<label for="from_entry-date">From :</label>
+		<input type="date" id="from-entry-date" name="from_entry-date" th:field="*{startDate}" disabled required>
+		<label for="to_entry-date">To :</label>
+		<input type="date" id="to-entry-date" name="to_entry-date" th:field="*{endDate}" disabled required>
+		<div id="inputs-container"></div>
+		<select id="project" name="project" th:field="*{task}" required>
+			<option value="">Select Project</option>
+			<option th:each="t : ${tasks}" th:value="${t}" th:text="${t}"></option>
+		</select>
+		<label>Total Hours :</label>
+		<input type="number" id="hours" name="hours" step="0.25" min="0" max="24" placeholder="Auto-calculated"
+			th:field="*{totalHours}" readonly>
+		<label>Notes :</label>
+		<textarea id="notes" name="notes" rows="3" placeholder="Add any additional details..."
+			th:field="*{notes}"></textarea>
+		<button type="submit" class="submit-btn">Update Timesheet</button>
+	</form>
+	</div>
+	
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/timesheet-update.js}"></script>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

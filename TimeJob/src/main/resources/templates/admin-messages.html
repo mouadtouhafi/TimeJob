@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Messages - Admin</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/timesheet-submitted.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+
+<body class="timesheet-page">
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<h1>Your Team's Messages</h1>
+		<table id="messagesTable">
+			<thead>
+				<tr class="filter-row">
+					<th><input type="text" placeholder="Filter Username"></th>
+					<th><input type="text" placeholder="Filter Message"></th>
+					<th><input type="text" placeholder="Filter Status"></th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr class="header-row">
+					<th>Username</th>
+					<th>Message</th>
+					<th>Status</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody th:each="message : ${messages}">
+				<tr>
+					<td th:text="${message.user.username}"></td>
+					<td th:text="${message.message}"></td>
+					<td th:text="${message.isTreated ? 'Treated' : 'Not Treated'}"></td>
+					<td th:if="${message.isTreated} == false">
+						<form th:action="@{/treat-message}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${message.id}" />
+							<button type="submit">Treated</button>
+						</form>
+					</td>
+					<td th:if="${message.isTreated} == true">
+						<form th:action="@{/untreat-message}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${message.id}" />
+							<button type="submit" id="green-check-btn">&#9989;</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/admin-messages.js}"></script>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

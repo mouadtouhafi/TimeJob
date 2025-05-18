@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<footer th:fragment="footer" class="footer">
+		<div class="footer-content">
+			<div class="footer-section about">
+				<h3>TimeJob</h3>
+				<p>Streamlines time management and leave request processes, making scheduling and approvals effortless.
+				</p>
+			</div>
+			<div class="footer-section links">
+				<h4>Links</h4>
+				<ul>
+					<li><a th:href="@{/home}">Home</a></li>
+					<li><a th:href="@{/timesheet}">Timesheets</a></li>
+					<li><a th:href="@{/days-off}">Days off</a></li>
+				</ul>
+			</div>
+			<div class="footer-section contact">
+				<h4>Contact :</h4>
+				<p>Phone: +212649244322</p>
+				<p>Email: touhafimouad@gmail.com</p>
+				<p>Casablanca, Morocco</p>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			&copy; 2025 TimeJob. All rights reserved
+		</div>
+	</footer>
+</body>
+
+</html>

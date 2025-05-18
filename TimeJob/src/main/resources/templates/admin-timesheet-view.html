@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Grouped Timesheets - Admin</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/timesheet-submitted.css">
+	<link rel="stylesheet" href="/stylesheets/admin-timesheet.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<h1>Your Team's Timesheets</h1>
+		<div th:if="${duplicates != null and !duplicates.isEmpty()}"
+			class="warning-duplicated-dates" onclick="openDuplicatedDatesModal()">
+			<p>⚠️ Some users have submitted timesheets with duplicated dates — Click to view.</p>
+		</div>
+		<div th:if="${timesheetsByTask.isEmpty()}" style="text-align: center; margin-top: 4rem;">
+			<p style="font-size: 1.2rem; color: #666;">
+				No timesheets have been submitted yet.
+			</p>
+		</div>
+		<div th:if="${!timesheetsByTask.isEmpty()}">
+			<div class="tabs">
+				<button th:each="entry, iter : ${timesheetsByTask}" th:text="${entry.key}"
+					th:attr="data-tab='tab__' + ${iter.index}"
+					th:class="'tab-button' + (${iter.index == 0} ? ' active' : '')" onclick="switchTab(this)">
+				</button>
+			</div>
+			<div th:each="entry, iter : ${timesheetsByTask}" th:attr="id='tab__' + ${iter.index}"
+				th:class="'tab-content' + (${iter.index == 0} ? ' active' : '')">
+				<h2 th:text="'Task :  ' + ${entry.key}" class="task-title"></h2>
+
+				<table>
+					<thead>
+						<tr class="filter-row">
+							<th><input type="text" placeholder="Filter User"></th>
+							<th><input type="text" placeholder="Filter Start"></th>
+							<th><input type="text" placeholder="Filter End"></th>
+							<th><input type="text" placeholder="Filter Hours"></th>
+							<th><input type="text" placeholder="Filter Note"></th>
+							<th><input type="text" placeholder="Filter Status"></th>
+							<th><input type="text" placeholder="Filter Monday"></th>
+							<th><input type="text" placeholder="Filter Tuesday"></th>
+							<th><input type="text" placeholder="Filter Wednesday"></th>
+							<th><input type="text" placeholder="Filter Thursday "></th>
+							<th><input type="text" placeholder="Filter Friday"></th>
+							<th><input type="text" placeholder="Filter Saturday"></th>
+							<th><input type="text" placeholder="Filter Sunday"></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th>User</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Total Hours</th>
+							<th>Note</th>
+							<th>Status</th>
+							<th>Monday</th>
+							<th>Tuesday</th>
+							<th>Wednesday</th>
+							<th>Thursday</th>
+							<th>Friday</th>
+							<th>Saturday</th>
+							<th>Sunday</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ts : ${entry.value}">
+							<td th:text="${ts.user.username}"></td>
+							<td th:text="${ts.startDate}"></td>
+							<td th:text="${ts.endDate}"></td>
+							<td th:text="${ts.totalHours}"></td>
+							<td th:text="${ts.notes}"></td>
+							<td th:text="${ts.approved ? 'Approved' : 'Not Approved'}"></td>
+							<td th:text="${ts.mondayHours}"></td>
+							<td th:text="${ts.tuesdayHours}"></td>
+							<td th:text="${ts.wednesdayHours}"></td>
+							<td th:text="${ts.thursdayHours}"></td>
+							<td th:text="${ts.fridayHours}"></td>
+							<td th:text="${ts.saturdayHours}"></td>
+							<td th:text="${ts.sundayHours}"></td>
+
+							<td th:if="${!ts.approved}">
+								<form th:action="@{/approve-timesheet}" method="post" style="display:inline;">
+									<input type="hidden" name="id" th:value="${ts.id}" />
+									<button type="submit">Approve</button>
+								</form>
+							</td>
+
+							<td th:if="${ts.approved}">
+								<form th:action="@{/redo-timesheet}" method="post" style="display:inline;">
+									<input type="hidden" name="id" th:value="${ts.id}" />
+									<button type="submit" id="green-check-btn">&#9989;</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="duplicatedDatesModal" class="modal">
+	<div class="modal-content">
+		<span class="close" onclick="closeDuplicatedDatesModal()">&times;</span>
+		<h2>Duplicated Dates by Username</h2>
+
+		<div class="accordion-container">
+			<div th:each="entry : ${duplicates}" class="accordion-item">
+				<button class="accordion-toggle" onclick="toggleAccordion(this)">
+					<span th:text="${entry.key}"></span>
+				</button>
+				<div class="accordion-content">
+					<ul>
+						<li th:each="date : ${entry.value}" th:text="${date}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	</div>
+
+	<div th:replace="~{common/footer :: footer}"></div>
+
+	<script th:src="@{/js/admin-timesheet-list.js}"></script>
+
+</body>
+
+</html>

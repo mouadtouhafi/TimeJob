@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+	<nav th:fragment="nav">
+		<div class="logo">TimeJob</div>
+		<ul>
+			<li sec:authorize="isAuthenticated()">
+				<span class="nav-button" sec:authentication="name" style="color: #cd6155;"></span>
+			</li>
+			<li><a th:href="@{/home}">Home</a></li>
+			<li><a th:href="@{/timesheet}">Timesheets</a></li>
+			<li><a th:href="@{/days-off}">Days off</a></li>
+			<li sec:authorize="hasRole('ADMIN')"><a th:href="@{/manage}">Management</a></li>
+			<li><a th:href="@{/contact}">Contact</a></li>
+			<li><a th:href="@{/logout}" onclick="logout()">Logout</a></li>
+		</ul>
+	</nav>
+</body>
+
+</html>

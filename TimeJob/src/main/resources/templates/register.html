@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+  	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/register.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+	<div th:replace="~{common/nav-login :: nav}"></div>
+	<div class="page-content">
+    <div class="container">
+		<img src="/images/logo.png" alt="TimeJob Logo" class="register-logo">
+        <h2>Create Account</h2>
+        <form method="POST" th:action="@{/register}" th:object="${form}">
+            <div class="form-group">
+                <label th:for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" required placeholder="Enter username">
+                <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            </div>
+
+            <div class="form-group">
+                <label th:for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" required placeholder="Enter email">
+                <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+
+            <div class="form-group">
+                <label th:for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" required placeholder="Enter password">
+                <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+
+            <input type="submit" value="Register">
+        </form>
+        <div class="login-link">
+            Already have an account? <a th:href="@{/login}">Sign in</a>
+        </div>
+    </div>
+    </div>
+    <div th:replace="~{common/footer :: footer}"></div>
+</body>
+</html>

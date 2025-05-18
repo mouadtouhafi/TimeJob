@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Home</title>
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<main>
+		<div class="card-container">
+			<a class="card" th:href="@{/timesheet}">
+				<h2>Timesheet</h2>
+				<p>Fill in your weekly working hours to maintain an accurate and complete record of your timesheet.</p>
+			</a>
+			<a class="card" th:href="@{/days-off}">
+				<h2>Days off</h2>
+				<p>Submit your requested days off for the current period to ensure proper scheduling and approval.</p>
+			</a>
+			<a class="card" th:href="@{/submissions}">
+				<h2>Your submissions</h2>
+				<p>Access and verify your previously submitted timesheets and days off entries to make sure all your
+					working hours and leave days have been correctly recorded.</p>
+			</a>
+		</div>
+	</main>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

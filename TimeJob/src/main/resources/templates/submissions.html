@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Your submissions</title>
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<main>
+		<div class="card-container">
+			<a class="card card-link" th:href="@{/timesheet-list}">
+				<h2>Submitted Timesheets</h2>
+				<p>Review your submitted timesheets to confirm that all your working hours have been accurately recorded and saved.</p>
+			</a>
+			<a class="card card-link" th:href="@{/daysoff-list}">
+				<h2>Submitted days off</h2>
+				<p>Check your days off submissions to ensure that your leave requests have been correctly registered and are up to date.</p>
+			</a>
+		</div>
+	</main>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

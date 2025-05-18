@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<nav th:fragment="nav">
+		<div class="logo">TimeJob</div>
+		<ul>
+			<li><a th:href="@{/register}">Register</a></li>
+			<li><a th:href="@{/login}">Login</a></li>
+			<li><a th:href="@{/about}">About</a></li>
+		</ul>
+	</nav>
+</body>
+</html>

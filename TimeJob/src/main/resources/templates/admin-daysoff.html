@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Grouped Days Off - Admin</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/timesheet-submitted.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+
+<body class="timesheet-page">
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<h1>Your Team's Days Off</h1>
+		<table id="timesheetTable">
+			<thead>
+				<tr class="filter-row">
+					<th><input type="text" placeholder="Filter Username"></th>
+					<th><input type="text" placeholder="Filter Date"></th>
+					<th><input type="text" placeholder="Filter Status"></th>
+					<th><input type="text" placeholder="Filter Consumption"></th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr class="header-row">
+					<th>Username</th>
+					<th>Day</th>
+					<th>Status</th>
+					<th>Is consumed</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody th:each="dayoff : ${daysoff}">
+				<tr>
+					<td th:text="${dayoff.user.username}"></td>
+					<td th:text="${dayoff.date}"></td>
+					<td th:text="${dayoff.isApproved ? 'Approved' : 'Not Approved'}"></td>
+					<td th:text="${dayoff.isConsumed ? 'Consumed' : 'Not Consumed'}"></td>
+					<td th:if="${dayoff.isApproved} == false">
+						<form th:action="@{/approve-dayoff}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${dayoff.id}" />
+							<button type="submit">Approve</button>
+						</form>
+					</td>
+					<td th:if="${dayoff.isApproved} == true">
+						<form th:action="@{/unApprove-dayoff}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${dayoff.id}" />
+							<button type="submit" id="green-check-btn">&#9989;</button>
+						</form>
+					</td>
+					<td th:if="${dayoff.isConsumed} == false">
+						<form th:action="@{/setConsume-dayoff}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${dayoff.id}" />
+							<button type="submit">Consummed</button>
+						</form>
+					</td>
+					<td th:if="${dayoff.isConsumed} == true">
+						<form th:action="@{/setUnConsume-dayoff}" method="post" style="display:inline;">
+							<input type="hidden" name="id" th:value="${dayoff.id}" />
+							<button type="submit" id="green-check-btn">&#9989;</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/admin-daysoff.js}"></script>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

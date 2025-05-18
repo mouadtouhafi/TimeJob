@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>About Us</title>
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/home.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body class="timesheet-page">
+	<div th:replace="~{common/nav :: nav}"></div>
+
+	<main>
+		<div class="page-content" style="flex-direction: column; max-width: 900px; text-align: center;">
+			<h1>About This Application</h1>
+			<p style="margin: 1.5rem 0; font-size: 1.1rem;">
+				This application was designed to help managers and employees efficiently handle work-related tasks such
+				as tracking timesheets,
+				managing leave requests, and communicating effectively through a built-in messaging system.
+			</p>
+			<p style="margin: 1rem 0; font-size: 1rem;">
+				It streamlines day-to-day operations by providing a clear interface to submit, review, and approve
+				employee data. The goal is to save time,
+				improve transparency, and ensure accurate record keeping across the organization.
+			</p>
+			<p style="margin: 1rem 0; font-size: 1rem;">
+				Whether you're submitting your hours, checking your team's availability, or reviewing internal feedback,
+				this platform is built to
+				support your workflow with clarity and ease.
+			</p>
+		</div>
+	</main>
+
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+</html>

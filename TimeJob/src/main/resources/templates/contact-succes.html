@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Message Sent</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/nav-stylesheet.css">
+	<link rel="stylesheet" href="/stylesheets/contact.css">
+	<link rel="stylesheet" href="/stylesheets/contact-succes.css">
+	<link rel="stylesheet" href="/stylesheets/footer-stylesheet.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div th:replace="~{common/nav :: nav}"></div>
+	<div class="page-content">
+		<div class="success-container">
+			<div class="emoji">😊</div>
+			<h1>Message Sent Successfully!</h1>
+			<p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+			<a th:href="@{/home}">Go Back to Home</a>
+		</div>
+	</div>
+	<div th:replace="~{common/footer :: footer}"></div>
+	<script th:src="@{/js/logout-jwt.js}"></script>
+</body>
+
+
+</html>
