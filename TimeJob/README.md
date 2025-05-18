@@ -22,28 +22,28 @@ TimeJob is a web application built with **Spring Boot**, using **JWT authenticat
 ## 📸 Screenshots of main pages
 
 ### 🔐 Login Page
-![Login Screenshot](images/login.png)
+![Login Screenshot](readmeImages/login.png)
 
 ### 🔐 Register Page
-![Login Screenshot](images/register.png)
+![Login Screenshot](readmeImages/register.png)
 
 ### 🗓️ Home Page
-![Timesheet Table](images/home.png)
+![Timesheet Table](readmeImages/home.png)
 
 ### 🗓️ Submit Timesheets Form (User)
-![Timesheet Table](images/timesheets_form.png)
+![Timesheet Table](readmeImages/timesheets_form.png)
 
 ### 🗓️ Submit Days-off Form (User)
-![Timesheet Table](images/daysoff_form.png)
+![Timesheet Table](readmeImages/daysoff_form.png)
 
 ### 🗓️ Submitted Timesheets (Admin)
-![Timesheet Table](images/timesheets-list.png)
+![Timesheet Table](readmeImages/timesheets-list.png)
 
 ### 🗓️ Submitted Days-off (Admin)
-![Timesheet Table](images/daysoff-list.png)
+![Timesheet Table](readmeImages/daysoff-list.png)
 
 ### 📬 Contact page
-![Messages Page](images/contact.png)
+![Messages Page](readmeImages/contact.png)
 
 ---
 
